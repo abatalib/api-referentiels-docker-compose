@@ -14,10 +14,16 @@ services:
       - 9999:9999
     restart:
       on-failure
+  keycloak:
+    image: abatalib/custom-keycloak
+    ports:
+      - 8080:8080
+    restart:
+      on-failure
   api-famille-emploi:
     image: abatalib/api-famille-emploi
     depends_on:
-      - api-service-discovery
+      - keycloak
     ports:
       - 9002:9002
     restart:
